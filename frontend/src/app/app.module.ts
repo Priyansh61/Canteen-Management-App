@@ -15,6 +15,20 @@ import { AppHeaderComponent } from './layouts/full/header/header.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
+import {NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION} from 'ngx-ui-loader';
+
+const ngxuiLoaderConfig:NgxUiLoaderConfig = {
+  text: 'Loading...',
+  textColor:'#FFFFFF',
+  textPosition:'center-center',
+  fgsColor:'#00AEEF',
+  pbColor:'#00AEEF',
+  bgsColor:'#00AEEF',
+  bgsOpacity:0.5,
+  fgsType:SPINNER.ballSpinClockwise,
+  pbDirection:PB_DIRECTION.leftToRight,
+  pbThickness:5,
+}
 @NgModule({
   declarations: [	
     AppComponent,
@@ -34,7 +48,8 @@ import { SignupComponent } from './signup/signup.component';
     MaterialModule,
     FlexLayoutModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxUiLoaderModule.forRoot(ngxuiLoaderConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
