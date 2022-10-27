@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SnackbarService } from '../services/snackbar.service';
 import { UserService } from '../services/user.service';
@@ -20,18 +20,24 @@ export class SignupComponent implements OnInit {
     private router:Router,
     private userServices:UserService,
     private snackBarService:SnackbarService,
-    private dialogRef:MatDialogConfig<SignupComponent>,
+    private dialogRef:MatDialogRef<SignupComponent>,
     private ngxServices:NgxUiLoaderService) { }
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      name:[null,Validators.required,Validators.pattern(GlobalConstant.namePattern)],
-      email:[null,Validators.required,Validators.pattern(GlobalConstant.emailPattern)],
-      password:[null,Validators.required,Validators.pattern(GlobalConstant.passwordPattern)],
-      contactNumber:[null,Validators.required,Validators.pattern(GlobalConstant.contactNumberPattern)]
+      name:[null,[Validators.required,Validators.pattern(GlobalConstant.namePattern)]],
+      email:[null,[Validators.required,Validators.pattern(GlobalConstant.emailPattern)]],
+      password:[null,[Validators.required,Validators.pattern(GlobalConstant.passwordPattern)]],
+      contactNumber:[null,[Validators.required,Validators.pattern(GlobalConstant.contactNumberPattern)]],
+      confirmPassword:[null,[Validators.required,Validators.pattern(GlobalConstant.passwordPattern)]]
   });
 }
-  handleSubmit(){
+
+  onCancelClick(){
+    this.dialogRef.close();
+  }
+
+  onSignupClick(){
     this.ngxServices.start();
     var data:any = {
       name:this.signupForm.value.name,
@@ -45,6 +51,7 @@ export class SignupComponent implements OnInit {
       this.router.navigate(['/']); 
     },(error:any)=>{
       this.ngxServices.stop();
+      this.dialogRef.close();
       this.responseMessage = error.error.message;
       this.snackBarService.openSnackbar(this.responseMessage,GlobalConstant.genericErrorMessage,2000);
     });

@@ -16,6 +16,7 @@ import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import {NgxUiLoaderModule,NgxUiLoaderConfig,SPINNER,PB_DIRECTION} from 'ngx-ui-loader';
+import { LoginComponent } from './login/login.component';
 
 const ngxuiLoaderConfig:NgxUiLoaderConfig = {
   text: 'Loading...',
@@ -37,7 +38,8 @@ const ngxuiLoaderConfig:NgxUiLoaderConfig = {
     FullComponent,
     AppHeaderComponent,
     AppSidebarComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent
    ],
   imports: [
     BrowserModule,
