@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,7 +9,8 @@ import { environment } from 'src/environments/environment';
 export class UserService {
   url = environment.apiUrl;
 
-  constructor(private httpClient:HttpClient) {}
+  constructor(private httpClient:HttpClient,
+    private route:Router) {}
 
   signup(data:any){
     return this.httpClient.post(`${this.url}/user/signup`, data,{
@@ -29,6 +31,26 @@ export class UserService {
   }
 
   checktoken(data:any){
-    return this.httpClient.get(`${this.url}/user/checkToken`, data,{
+    return this.httpClient.get(`${this.url}/user/checkToken`, data
+    );
+  }
+
+  loggedIn(){
+    if(localStorage.getItem('token')){
+      this.checktoken(localStorage.getItem('token')).subscribe((response:any)=>{
+        if(response.status===200){
+          return true;
+        }
+        else{
+          localStorage.removeItem('token');
+          return false;
+        }
+    },(error:any)=>{
+      localStorage.removeItem('token');
+      console.log(error);
+      return false;
+    });
+    }
+    return false;
   }
 }

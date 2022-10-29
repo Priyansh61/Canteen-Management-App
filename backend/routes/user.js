@@ -164,10 +164,22 @@ router.patch('/update',auth.authenticateToken,(req,res)=>{
 }); 
 
 router.get('/checkToken',(req,res)=>{
-    return res.status(200).json({
-        message:"Token verified"
-    });
+    const token=req.headers['authorization'];
+    if(token==null){
+        return res.status(401).json({message:"Token not found"});
+    }
+    else{
+        jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
+            if(err){
+                return res.status(403).json({message:"Token not valid"});
+            }
+            else{
+                return res.status(200).json({message:"Token valid"});
+            }
+        });
+    }
 });
+
 
 router.post("/changePassword",auth.authenticateToken,(req,res)=>{
     let user=req.body;
