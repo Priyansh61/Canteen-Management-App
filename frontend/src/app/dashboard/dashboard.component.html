@@ -1,0 +1,39 @@
+<body>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Dashboard</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Dashboard content</p>
+        </mat-card-content>
+    </mat-card>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title">Total Category</h2>
+                    <h1 class="title">{{data?.categoryCount}}</h1>
+                    <p><button class="button" [routerLink]="['/canteen/category']">View Category</button></p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title">Total Product</h2>
+                    <h1 class="title">{{data?.productCount}}</h1>
+                    <p><button class="button" [routerLink]="['/canteen/product']">View Product</button></p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title">Total Bill</h2>
+                    <h1 class="title">{{data?.billCount}}</h1>
+                    <p><button class="button" [routerLink]="['/canteen/bill']">View Bills</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
