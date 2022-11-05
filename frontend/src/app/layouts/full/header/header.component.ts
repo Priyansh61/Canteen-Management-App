@@ -2,6 +2,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ChangePasswordComponent } from 'src/app/material-component/dialog/change-password/change-password.component';
 import { ConfirmationComponent } from 'src/app/material-component/dialog/confirmation/confirmation.component';
 
 @Component({
@@ -33,7 +34,7 @@ export class AppHeaderComponent {
     dialogConfig.data = {
       message:"Change Password"
     }
-    const dialogRef= this.dialog.open(ConfirmationComponent,dialogConfig);
+    const dialogRef= this.dialog.open(ChangePasswordComponent,dialogConfig);
     
   }
 }
