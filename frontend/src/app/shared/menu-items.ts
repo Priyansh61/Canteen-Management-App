@@ -12,7 +12,7 @@ const MENUITEMS = [
         state: 'dashboard',
         name: 'Dashboard',
         type: 'link',
-        icon: 'av_timer'
+        icon: 'dashboard'
     }
 ];
 
