@@ -5,6 +5,7 @@ export interface Menu {
     name: string;
     type: string;
     icon: string;
+    role: string;
 }
 
 const MENUITEMS = [
@@ -12,7 +13,15 @@ const MENUITEMS = [
         state: 'dashboard',
         name: 'Dashboard',
         type: 'link',
-        icon: 'dashboard'
+        icon: 'dashboard',
+        role:''
+    },
+    {
+        state: 'category',
+        name: 'Category',
+        type: 'link',
+        icon: 'category',
+        role:'admin'
     }
 ];
 

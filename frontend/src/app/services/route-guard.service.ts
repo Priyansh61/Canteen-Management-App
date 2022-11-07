@@ -22,6 +22,7 @@ export class RouteGuardService {
     const token:any=localStorage.getItem('token');
     var token_payload:any;
 
+
     try{
       token_payload=jwt_decode(token);
     }

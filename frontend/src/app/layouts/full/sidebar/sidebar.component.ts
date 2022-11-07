@@ -23,10 +23,11 @@ export class AppSidebarComponent implements OnDestroy {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     console.log(this.tokenPayload);
+    console.log(this.menuItems.getMenu());
 
   }
 
-
+  
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
