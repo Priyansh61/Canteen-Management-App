@@ -22,11 +22,7 @@ export class CategoryService {
 
 
   updateCategory(category: any) {
-    return this.httpClient.put(`${this.url}/category/update`, category, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return this.httpClient.patch(`${this.url}/category/update`, category);
   }
 
   getCategory() {

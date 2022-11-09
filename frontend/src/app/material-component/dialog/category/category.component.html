@@ -1,0 +1,18 @@
+<mat-dialog-content>
+    <form [formGroup]="categoryForm">
+        <mat-form-field>
+            <input matInput placeholder="Category Name" formControlName="name">
+            <mat-error *ngIf="categoryForm.controls.name.hasError('required')">
+                Category Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <!-- <mat-form-field class="full-width">
+            <input matInput placeholder="Category Description" formControlName="description">
+        </mat-form-field> -->
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button color="primary"  cdkFocusInitial [disabled]="!(categoryForm.valid && categoryForm.dirty)" (click)="onSubmit()">{{dialogData.action}} Cateogy</button>
+</mat-dialog-actions>

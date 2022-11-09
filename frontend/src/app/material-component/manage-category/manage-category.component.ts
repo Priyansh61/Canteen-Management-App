@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { CategoryService } from 'src/app/services/category.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { GlobalConstant } from 'src/app/shared/global-constant';
+import { CategoryComponent } from '../dialog/category/category.component';
 
 @Component({
   selector: 'app-manage-category',
@@ -12,7 +13,7 @@ import { GlobalConstant } from 'src/app/shared/global-constant';
   styleUrls: ['./manage-category.component.scss']
 })
 export class ManageCategoryComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'description', 'action'];
+  displayedColumns: string[] = ['name', 'action'];
   dataSource:any;
   responseMessage:any;
 
@@ -48,9 +49,39 @@ export class ManageCategoryComponent implements OnInit {
   }
 
   AddCategory(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      action:'Add',
+    }
+    const dialogRef=this.dialog.open(CategoryComponent,dialogConfig);
+    this.router.events.subscribe((res)=>{
+      dialogRef.close();
+    });
+
+    const sub = dialogRef.componentInstance.onAddCategory.subscribe((response)=>{
+      this.tableData();
+    });
   }
 
-  EditCategory(){
+
+
+
+  EditCategory(element:any){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      action:'Edit',
+      id:element.id,
+    }
+    const dialogRef=this.dialog.open(CategoryComponent,dialogConfig);
+    this.router.events.subscribe((res)=>{
+      dialogRef.close();
+    });
+
+    const sub = dialogRef.componentInstance.onEditCategory.subscribe((response)=>{
+      this.tableData();
+    });
+
+
   }
 
   DeleteCategory(){
