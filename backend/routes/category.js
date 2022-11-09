@@ -32,15 +32,19 @@ router.get('/get',auth.authenticateToken,(req,res,next)=>{
 });
 
 
-router.get('/patch',auth.authenticateToken,checkRole.checkRole,(req,res,next)=>{
-    let product =req.body;
+router.patch('/update',auth.authenticateToken,checkRole.checkRole,(req,res,next)=>{
+    let category = req.body;
     var query="update category set name=? where id=?";
-    connection.query(query,[category.name],[category.id],(err,result)=>{
+    connection.query(query,[category.name,category.id],(err,result)=>{
         if(!err){
             if (result.affectedRows==0){
-                return res.status(404).json({message:"Product category not found"});
+                return res.status(404).json({
+                    message:"Category not found"
+                });
             }
-            return res.status(200).json({message:"Product category updated successfully"});
+            return res.status(200).json({
+                message:"Category updated successfully"
+            });
         }
         else{
             return res.status(500).json(err);
