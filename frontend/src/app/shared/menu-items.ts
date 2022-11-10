@@ -22,6 +22,13 @@ const MENUITEMS = [
         type: 'link',
         icon: 'category',
         role:'admin'
+    },
+    {
+        state: 'product',
+        name: 'Product',
+        type: 'link',
+        icon: ' fastfood',
+        role:'admin'
     }
 ];
 
