@@ -28,4 +28,8 @@ export class CategoryService {
   getCategory() {
     return this.httpClient.get(`${this.url}/category/get`);
   }
+
+  getbyId(id: any) {
+    return this.httpClient.get(`${this.url}/category/getCategory/${id}`);
+  }
 }

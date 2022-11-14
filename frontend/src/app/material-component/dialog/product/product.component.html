@@ -1,0 +1,50 @@
+<mat-dialog-content>
+    <form [formGroup]="productForm">
+        <div fxFlex fxLayout="column">
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <input matInput placeholder="Product Name" formControlName="name">
+                    <mat-error *ngIf="productForm.controls.name.hasError('required')">
+                        Product Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row wrap">
+                <mat-form-field>
+                    <mat-select placeholder="Category" formControlName="categoryId">
+                        <mat-option *ngFor="let category of categoryList" [value]="category.id">
+                            {{category.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="productForm.controls.categoryId.hasError('required')">
+                        Category is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Price" formControlName="price">
+                    <mat-error *ngIf="productForm.controls.price.hasError('required')">
+                        Price is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>  
+
+            <div fxLayout="row wrap">
+                <mat-form-field>
+                    <input matInput placeholder="Description" formControlName="description">
+                    <mat-error *ngIf="productForm.controls.description.hasError('required')">
+                        Description is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button color="primary" cdkFocusInitial [disabled]="!(productForm.valid && productForm.dirty)"
+        (click)="onSubmit()">{{dialogData.action}} Product</button>
+</mat-dialog-actions>

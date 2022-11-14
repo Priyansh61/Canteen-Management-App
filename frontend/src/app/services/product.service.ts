@@ -11,7 +11,7 @@ export class ProductService {
   constructor(private httpClient:HttpClient) { }
 
   addProduct(data:any){
-    return this.httpClient.post(this.url+'product/add',data,{
+    return this.httpClient.post(this.url+'/product/add',data,{
       headers:{
         'Content-Type':'application/json'
     }
@@ -19,7 +19,7 @@ export class ProductService {
   }
 
   updateProduct(data:any){
-    return this.httpClient.patch(this.url+'product/update',data,{
+    return this.httpClient.patch(this.url+'/product/update',data,{
       headers:{
         'Content-Type':'application/json'
     }
@@ -27,11 +27,13 @@ export class ProductService {
   }
 
   getProduct(){
-    return this.httpClient.get(this.url+'product/get');
+    console.log(this.url+'/product/get');
+    return this.httpClient.get(this.url+'/product/get');
   }
 
   updateProductStatus(data:any){
-    return this.httpClient.patch(this.url+'product/updateStatus',data,{
+    console.log(this.url+'/product/updateStatus/'+data)
+    return this.httpClient.patch(this.url+'/product/updateStatus',data,{
       headers:{
         'Content-Type':'application/json'
     }
@@ -39,7 +41,16 @@ export class ProductService {
   }
 
   deleteProduct(data:any){
-    return this.httpClient.delete(this.url+'product/delete/'+data);
+    console.log(this.url+'/product/delete/'+data)
+    return this.httpClient.delete(this.url+'/product/delete/'+data);
+  }
+
+  getProductByCategory(id:any){
+    return this.httpClient.get(this.url+'/product/getbyCategory/'+id);
+  }
+
+  getById(id:any){
+    return this.httpClient.get(this.url+'/product/getbyID/'+id);
   }
   
 }
