@@ -23,9 +23,10 @@ create table product (
     name varchar(100) NOT NULL,
     description varchar(100) NOT NULL,
     price int NOT NULL,
+    img_url varchar(100),
     category_id int NOT NULL,
     status int NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES category(id)
+    FOREIGN KEY (category_id) REFERENCES category(id),
 );
 
 create table bill (
@@ -41,3 +42,11 @@ create table bill (
     CreatedDate datetime NOT NULL
 );
 
+create table cart (
+    id int primary key auto_increment,
+    product_id int NOT NULL,
+    quantity int NOT NULL,
+    user_id int NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES product(id),
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
