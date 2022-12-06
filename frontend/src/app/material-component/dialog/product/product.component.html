@@ -12,6 +12,15 @@
 
             <div fxLayout="row wrap">
                 <mat-form-field>
+                    <input matInput placeholder="Product Image URL here" formControlName="img_url" type="url">
+                    <mat-error *ngIf="productForm.controls.img_url.hasError('required')">
+                        Image is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row wrap">
+                <mat-form-field>
                     <mat-select placeholder="Category" formControlName="categoryId">
                         <mat-option *ngFor="let category of categoryList" [value]="category.id">
                             {{category.name}}

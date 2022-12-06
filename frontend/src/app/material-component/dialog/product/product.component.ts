@@ -35,10 +35,10 @@ export class ProductComponent implements OnInit {
     this.getCategory();
     this.productForm = this.formBuilder.group({
       name:[null,[Validators.required]],
+      img_url:[null,[Validators.required]],
       categoryId:[null,[Validators.required]],
       description:[null,[Validators.required]],
       price:[null,[Validators.required]]
-
     });
 
     if (this.dialogAction == 'Edit') {
@@ -87,6 +87,7 @@ export class ProductComponent implements OnInit {
     var formData=this.productForm.value;
     var data = {
       name:formData.name,
+      img_url:formData.img_url,
       category_id:formData.categoryId,
       description:formData.description,
       price:formData.price
@@ -108,14 +109,10 @@ export class ProductComponent implements OnInit {
 
   editProduct(){
     var formData=this.productForm.value;
-    console.log(formData.categoryId);
-    console.log(formData.name);
-    console.log(formData.description);
-    console.log(formData.price);
-    console.log(this.dialogData.data.id);
     var data = {
       id: this.dialogData.data.id,
       name:formData.name,
+      img_url:formData.img_url,
       category_id:formData.categoryId,
       description:formData.description,
       price:formData.price
